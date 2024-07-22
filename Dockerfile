@@ -1,10 +1,11 @@
 FROM python:3.10
 WORKDIR /app
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+COPY requirements.txt /app
 
-COPY . .
+RUN python3 -m pip install -r requirements.txt
+
+COPY . /app
 
 EXPOSE 8000
 
