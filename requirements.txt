@@ -29,7 +29,6 @@ mdurl
 packaging
 poyo
 prompt_toolkit
-psycopg2
 psycopg2-binary
 pydantic
 Pygments
