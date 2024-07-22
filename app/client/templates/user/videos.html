@@ -1,0 +1,30 @@
+<title>Video cho coder</title>
+{% include "layouts/header_user.html" %}
+
+<section id="content" class="container my-3 my-lg-5" style="min-height: calc(100vh - 312px);">
+    <div class="row">
+        <article class="col-md-10 col-lg-8 mx-auto">
+            <h1 itemprop="name" class="mb-4 pb-4 border-bottom">Video trên youtube cho các ae coder</h1>
+            <div>
+                <p>Các video chia sẻ về lập trình, đời sống, những định hướng của lập trình viên trên youtube được đánh
+                    giá cao</p>
+                <div class="row">
+                    {% for video in videos %}
+                    <div class="col-6 col-md-4 mb-3">
+                        <a target="_blank" href="https://www.youtube.com/watch?v={{ video.video_id }}">
+                            <img src="https://img.youtube.com/vi/{{ video.video_id }}/hqdefault.jpg"
+                                alt="{{ video.title }}" class="img-thumbnail">
+                        </a>
+                        <h3 class="h6 sm-h5 md-h5 mt-2">
+                            <a target="_blank" href="https://www.youtube.com/watch?v={{ video.video_id }}">{{
+                                video.title }}</a>
+                        </h3>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+{% include "layouts/footer.html" %}

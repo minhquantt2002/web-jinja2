@@ -1,0 +1,24 @@
+<title>Danh sách các bài viết</title>
+{% include "layouts/header_user.html" %}
+
+<section id="content" class="container my-3 my-lg-5" style="min-height: calc(100vh - 312px);">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      {% for article in articles %}
+      <article class="post row my-2 my-sm-4">
+        <a class="col-3" href="/articles/{{article.id}}">
+          <img src="{{article.image_url}}" alt="articles" class="img-thumbnail">
+        </a>
+        <div class="col-9 pl-0 excerpt">
+          <h2 itemprop="name" class="h5 md-h4">
+            <a itemprop="url" href="/articles/{{article.id}}" title="articles">{{article.title}}</a>
+          </h2>
+          <div class="d-none d-sm-block" itemprop="description">{{article.description}}</div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% include "layouts/footer.html" %}

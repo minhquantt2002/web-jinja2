@@ -1,0 +1,18 @@
+<title>Những bài viết hay</title>
+{% include "layouts/header_user.html" %}
+
+<section id="content" class="container my-3 my-lg-5" style="min-height: calc(100vh - 312px);">
+    <div class="row">
+        <article class="post col-md-10 col-lg-8 mx-auto">
+            <h1 itemprop="name" class="mb-4 pb-4 border-bottom">Các bài viết hay tại Blog Lập Trình Cùng AE MU</h1>
+            <div class="post-body" itemprop="articleBody">
+                <h4>Tại trang này sẽ cập nhật các bài viết được bạn đọc quan tâm nhất</h4>
+                {% for article in articles %}
+                <p><a href="http://127.0.0.1:8000/articles/{{ article.id }}">{{ article.title }}</a></p>
+                {% endfor %}
+            </div>
+        </article>
+    </div>
+</section>
+
+{% include "layouts/footer.html" %}

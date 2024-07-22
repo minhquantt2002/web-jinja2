@@ -1,0 +1,193 @@
+<title>Manage Articles</title>
+{% include "layouts/header_admin.html" %}
+<section id="content" class="container my-3 my-lg-5">
+    <div class="row">
+        <div class="col-sm-5">
+            <p class="panel-heading fw-bold">Form Article Create</p>
+            <div class="panel-body">
+                <form class="form-horizontal bucket-form" action="/admin/articles/create" method="post"
+                    enctype="multipart/form-data" onkeydown="return event.key !== 'Enter';">
+                    <div class="form-group">
+                        <label class="control-label">Title</label>
+                        <input id="title_form" type="text" class="form-control" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Description</label>
+                        <input id="description_form" type="text" class="form-control" name="description">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Image Url</label>
+                        <input type="text" class="form-control" name="image_url" id="image_url">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Content</label>
+                        <textarea id="content_form" rows="18" class="form-control" name="content"></textarea>
+                    </div>
+                    <br>
+                    <div class="col-md-10 form-group" style="text-align: center;">
+                        <button onclick="getValue()" type="button" class="btn btn-primary mx-5" id="submit"
+                            data-bs-toggle="modal" data-bs-target="#messageModal">Submit</button>
+                        <button type="reset" class="btn btn-danger">Reset</button>
+                        <script>
+                            function getValue() {
+                                var title_form = document.getElementById('title_form');
+                                var description_form = document.getElementById('description_form');
+                                var content_form = document.getElementById('content_form');
+                                var image_form = document.getElementById('image_url');
+
+                                var title_modal = document.getElementById('title_modal');
+                                var description_modal = document.getElementById('description_modal');
+                                var image_modal = document.getElementById('image_modal');
+                                var content_modal = document.getElementById('content_modal');
+
+                                title_modal.innerHTML = title_form.value;
+                                description_modal.innerHTML = description_form.value;
+                                image_modal.src = image_form.value;
+                                content_modal.innerHTML = content_form.value;
+                            }
+
+                        </script>
+                        <!-- Modal -->
+                        <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="m-2 text-start">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="messageModalLabel">Tạo bài viết mới</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <label class="fw-bold">Title: </label>
+                                        <div id="title_modal"></div>
+
+                                        <label class="fw-bold">Description: </label>
+                                        <div id="description_modal"></div>
+
+                                        <label class="fw-bold">Image: </label>
+                                        <img id="image_modal" class="img-thumbnail" src="" alt="Đây là ảnh!">
+
+                                        <label class="fw-bold">Content: </label>
+                                        <div id="content_modal"></div>
+
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Accept</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="panel-heading fw-bold">Articles</div>
+            <br>
+            <div class="panel-body">
+                <table class="table table-bordered table-striped mb-none">
+                    <thead>
+                        <tr style="text-align: center;">
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for article in articles %}
+                        <tr class="gradeX">
+                            <td>{{ article.id }}</td>
+                            <td>{{ article.title }}</td>
+                            <td>{{ article.description }}</td>
+                            <td>
+                                <button type="submit" class="btn btn-success" data-bs-toggle="modal"
+                                    data-bs-target="#editModal">ED</button>
+                                <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">DE</button>
+
+                                <!-- Modal Edit -->
+                                <form action="/admin/articles/edit/id={{ article.id }}" method="post"
+                                    enctype="multipart/form-data">
+                                    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="m-2 text-start">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="editModalLabel">Chỉnh sửa bài
+                                                            viết</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="fw-bold control-label">Title: </label>
+                                                        <input type="text" class="form-control" name="title"
+                                                            value="{{ article.title }}">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="fw-bold control-label">Description: </label>
+                                                        <input type="text" class="form-control" name="description"
+                                                            value="{{ article.description }}">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="fw-bold control-label">Url Image: </label>
+                                                        <input type="text" class="form-control" name="image_url"
+                                                            value="{{ article.image_url }}">
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="fw-bold control-label">Content: </label>
+                                                        <textarea id="content_form" rows="12" class="form-control"
+                                                            name="content">{{ article.content }}</textarea>
+                                                    </div>
+                                                    <br>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Accept</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <!-- Modal Delete -->
+                                <form action="/admin/articles/delete/id={{ article.id }}" method="post">
+                                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="m-2 text-start">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="deleteModalLabel">Xóa bài viết
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body fw-bold fs-5">Bài viết này sẽ bị xóa vĩnh
+                                                        viễn, bạn chắc chắn xóa bài viết này chứ?</div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Accept</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

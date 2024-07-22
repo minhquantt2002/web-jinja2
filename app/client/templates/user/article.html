@@ -1,0 +1,17 @@
+<title>{{ article.title }}</title>
+{% include "layouts/header_user.html" %}
+
+<section class="container my-3 my-lg-5" style="min-height: calc(100vh - 312px);">
+    <div class="row" style="height: auto !important;">
+        <article class="post col-md-10 col-lg-8 mx-auto post-detail noselect" style="height: auto !important;">
+            <h1 class="h2">{{ article.title }}</h1>
+            <p>{{ article.description }}</p>
+            <p class="border-bottom"><b><b>Created at: </b> {{ article.created }}
+            </p>
+            <img src="{{ article.image_url }}" alt="image" class="img-thumbnail"><br><br>
+            <div id="content">{{ article.content }}</div>
+        </article>
+    </div>
+</section>
+
+{% include "layouts/footer.html" %}
