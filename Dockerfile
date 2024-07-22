@@ -1,4 +1,4 @@
-FROM python:lastest
+FROM python
 WORKDIR /app
 
 COPY requirements.txt /app
