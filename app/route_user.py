@@ -3,8 +3,8 @@ from fastapi import APIRouter, Depends, status, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from database import get_db
-import crud
+from .database import get_db
+from . import crud
 
 templates = Jinja2Templates(directory="client/templates")
 

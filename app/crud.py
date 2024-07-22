@@ -1,7 +1,7 @@
 from sqlalchemy import select, update, delete, and_
 from sqlalchemy.orm import Session
-import model
-from schemas import article_schema, video_schema
+from . import model
+from .schemas import article_schema, video_schema
 
 
 def read_articles_by_user(db: Session):

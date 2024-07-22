@@ -2,8 +2,8 @@ from fastapi import FastAPI, Depends
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
-import route_user
-import route_admin
+from . import route_user
+from . import route_admin
 
 app = FastAPI(
     docs_url='/swagger/api/docs',

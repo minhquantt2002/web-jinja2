@@ -1,7 +1,7 @@
 import datetime
 from sqlalchemy import Column, String, Integer, DateTime
 from sqlalchemy.dialects.postgresql import TEXT
-from database import Base
+from .database import Base
 
 
 class Article(Base):

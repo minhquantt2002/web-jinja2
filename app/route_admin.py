@@ -3,9 +3,9 @@ from fastapi import APIRouter, Depends, status, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-from database import get_db
-from schemas import article_schema, video_schema
-import crud
+from .database import get_db
+from .schemas import article_schema, video_schema
+from . import crud
 
 templates = Jinja2Templates(directory="client/templates")
 
