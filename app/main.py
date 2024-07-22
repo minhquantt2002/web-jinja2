@@ -11,7 +11,7 @@ app = FastAPI(
     title='MU'
 )
 
-templates = Jinja2Templates(directory="client/templates")
+templates = Jinja2Templates(directory="app/client/templates")
 app.include_router(router=route_user.root_user)
 app.include_router(router=route_admin.root_admin, prefix="/admin")
 

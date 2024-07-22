@@ -7,7 +7,7 @@ from .database import get_db
 from .schemas import article_schema, video_schema
 from . import crud
 
-templates = Jinja2Templates(directory="client/templates")
+templates = Jinja2Templates(directory="app/client/templates")
 
 root_admin = APIRouter(tags=['APIs Admin'])
 

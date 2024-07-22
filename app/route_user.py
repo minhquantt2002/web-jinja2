@@ -6,7 +6,7 @@ from fastapi.templating import Jinja2Templates
 from .database import get_db
 from . import crud
 
-templates = Jinja2Templates(directory="client/templates")
+templates = Jinja2Templates(directory="app/client/templates")
 
 root_user = APIRouter(tags=['APIs User'])
 
