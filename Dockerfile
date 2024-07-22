@@ -1,4 +1,4 @@
-FROM python:lastest
+FROM python:3.11
 WORKDIR /app
 
 RUN python -m pip install -r requirements.txt
